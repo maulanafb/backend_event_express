@@ -4,9 +4,8 @@ const Categories = require("../../api/v1/categories/model");
 // import custom error not found dan bad request
 const { NotFoundError, BadRequestError } = require("../../errors");
 
-const getAllCategories = async () => {
-  const result = await Categories.find();
-
+const getAllCategories = async (req) => {
+  const result = await Categories.find({ organizer: req.user.organizer });
   return result;
 };
 
@@ -19,7 +18,7 @@ const createCategories = async (req) => {
   // apa bila check true / data categories sudah ada maka kita tampilkan error bad request dengan message kategori nama duplikat
   if (check) throw new BadRequestError("kategori nama duplikat");
 
-  const result = await Categories.create({ name });
+  const result = await Categories.create({ organizer: req.user.organizer });
 
   return result;
 };
@@ -27,7 +26,7 @@ const createCategories = async (req) => {
 const getOneCategories = async (req) => {
   const { id } = req.params;
 
-  const result = await Categories.findOne({ _id: id });
+  const result = await Categories.findOne({ _id: id, organizer: req.user.organizer });
 
   if (!result) throw new NotFoundError(`Tidak ada Kategori dengan id :  ${id}`);
 
@@ -41,6 +40,7 @@ const updateCategories = async (req) => {
   // cari categories dengan field name dan id selain dari yang dikirim dari params
   const check = await Categories.findOne({
     name,
+    organizer: req.user.organizer,
     _id: { $ne: id },
   });
 
@@ -62,7 +62,7 @@ const updateCategories = async (req) => {
 const deleteCategories = async (req) => {
   const { id } = req.params;
 
-  const deletedCategory = await Categories.findOneAndDelete({ _id: id });
+  const deletedCategory = await Categories.findOneAndDelete({ _id: id, organizer: req.user.organizer });
 
   if (!deletedCategory) {
     throw new NotFoundError(`Tidak ada Kategori dengan id: ${id}`);

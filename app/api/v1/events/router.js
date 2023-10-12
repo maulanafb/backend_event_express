@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express();
 const { create, index, find, update, destroy } = require('./controller');
+const { authenticateUser, authorizedRoles } = require('../../../middlewares/auth')
 
 router.get('/events', index);
 router.get('/events/:id', find);

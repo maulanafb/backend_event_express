@@ -5,28 +5,28 @@ const bcrypt = require('bcryptjs');
 let userSchema = Schema(
     {
         name: {
-           type: String,
-            required: [true, "Nama harus diisi"], 
+            type: String,
+            required: [true, "Nama harus diisi"],
             minLength: 3,
-            maxLength:50,
+            maxLength: 50,
         },
         email: {
             type: String,
-            required:[true,'Email harus diisi']
+            required: [true, 'Email harus diisi']
         },
         password: {
             type: String,
-            required:[true,"Password Harus diisi"]
+            required: [true, "Password Harus diisi"]
         },
         role: {
-            type: String, 
-            enum: ['admin', 'organizer','owner'],
-            default:'admin'
+            type: String,
+            enum: ['admin', 'organizer', 'owner'],
+            default: 'admin'
         },
         organizer: {
             type: mongoose.Types.ObjectId,
             ref: 'Organizer',
-            required:true
+            required: true
         }
     },
     { timestamps: true }
@@ -45,4 +45,4 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
     return isMatch;
 };
 
-module.exports = model("Organizer", userSchema);
+module.exports = model("User", userSchema);
