@@ -32,7 +32,7 @@ app.use(express.static(path.join(__dirname, "public")));
 // Define root route
 app.get("/", (req, res) => {
   res.status(200).json({
-    message: "Wellcome to api semina aww",
+    message: "Welcome to the API Semina Aww",
   });
 });
 
@@ -41,8 +41,8 @@ app.use(v1, talentsRouter);
 app.use(v1, authRouter);
 app.use(v1, organizersRouter);
 app.use(v1, eventsRouter);
-app.use(v1, imagesRouter);
 app.use(v1, categoriesRouter);
+app.use(v1, imagesRouter);
 
 // Use error handling middlewares
 app.use(notFoundMiddleware);

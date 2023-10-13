@@ -9,7 +9,7 @@ const { NotFoundError, BadRequestError } = require('../../errors');
 
 const getAllEvents = async (req) => {
   const { keyword, category, talent } = req.query;
-  let condition = {};
+  let condition = { organizer: req.user.organizer };
 
   if (keyword) {
     condition = { ...condition, title: { $regex: keyword, $options: 'i' } };
@@ -159,7 +159,7 @@ const updateEvents = async (req) => {
     { new: true, runValidators: true }
   );
 
-  
+
   return result;
 };
 
