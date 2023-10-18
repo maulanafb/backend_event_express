@@ -9,11 +9,14 @@ const app = express();
 
 // Define router
 const categoriesRouter = require("./app/api/v1/categories/router");
+const participantsRouter = require('./app/api/v1/participants/router');
 const imagesRouter = require("./app/api/v1/images/router");
 const talentsRouter = require('./app/api/v1/talents/router');
-const eventsRouter = require('./app/api/v1/events/router');
 const organizersRouter = require('./app/api/v1/organizers/router');
 const authRouter = require('./app/api/v1/auth/router');
+const ordersRouter = require('./app/api/v1/orders/router');
+const eventsRouter = require('./app/api/v1/events/router');
+const paymentsRouter = require('./app/api/v1/payments/router');
 
 // Define middlewares
 const notFoundMiddleware = require("./app/middlewares/not-found");
@@ -21,6 +24,7 @@ const handleErrorMiddleware = require("./app/middlewares/handler-error");
 
 // Define v1 API version
 const v1 = "/api/v1/cms";
+const v2 = "/api/v1/";
 
 // Use middlewares
 app.use(logger("dev"));
@@ -38,11 +42,14 @@ app.get("/", (req, res) => {
 
 // Define v1 API routes
 app.use(v1, talentsRouter);
+app.use(v1, paymentsRouter);
+app.use(v2, participantsRouter);
 app.use(v1, authRouter);
 app.use(v1, organizersRouter);
 app.use(v1, eventsRouter);
-app.use(v1, categoriesRouter);
+app.use(v1, ordersRouter);
 app.use(v1, imagesRouter);
+app.use(v1, categoriesRouter);
 
 // Use error handling middlewares
 app.use(notFoundMiddleware);

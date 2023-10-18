@@ -10,7 +10,6 @@ const { authenticateUser, authorizedRoles, } = require('../../../middlewares/aut
 // Rute untuk mengambil daftar kategori (HTTP GET)
 router.get("/categories", authenticateUser, authorizedRoles('organizer'), index);
 
-
 // Rute untuk membuat daftar kategori (HTTP POST)
 router.post("/categories", authenticateUser, authorizedRoles('organizer'), create);
 

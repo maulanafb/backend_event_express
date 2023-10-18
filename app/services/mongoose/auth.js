@@ -10,11 +10,11 @@ const signin = async (req) => {
     const result = await Users.findOne({ email: email })
 
     if (!result) {
-        throw new UnauthorizedError('Invalid email or password');
+        throw new UnauthorizedError('Invalid email or password 1');
     }
     const isPasswordValid = await result.comparePassword(password);
     if (!isPasswordValid) {
-        throw new UnauthorizedError('Invalid email or password');
+        throw new UnauthorizedError('Invalid email or password 2');
     }
     const token = createJWT({ payload: createTokenUser(result) });
 

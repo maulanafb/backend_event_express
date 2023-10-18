@@ -16,6 +16,9 @@ const create = async (req, res, next) => {
     res.status(StatusCodes.CREATED).json({
       data: result,
     });
+    console.log('result');
+    console.log(result);
+
   } catch (err) {
     next(err);
   }

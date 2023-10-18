@@ -7,7 +7,7 @@ const categorySchema = new Schema(
       type: String,
       minLength: [3, "Panjang nama Kategori minimal 3 Karakter"],
       maxLength: [20, "Panjang nama kategori maksimum 20 Karakter"],
-      required: [true, "Nama Kategori harus diisi ya bre"],
+      required: [true, "nama kategori ga boleh kosong"],
     },
     organizer: {
       type: mongoose.Types.ObjectId,
