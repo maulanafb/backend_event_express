@@ -5,7 +5,13 @@ const mongoose = require("mongoose");
 const { urlDb } = require("../config");
 
 // (3) connect ke MongoDB menggunakan konfigurasi yang telah kita import
-mongoose.connect(urlDb);
+mongoose.connect(urlDb, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true, ssl: true,
+    // useCreateIndex: true,
+})
+    .then(() => console.log("Database connected!"))
+    .catch(err => console.log(err));
 
 // (4) simpan koneksi dalam constant db
 const db = mongoose.connection;

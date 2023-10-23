@@ -3,6 +3,8 @@ const { getAllOrders } = require('../../../services/mongoose/orders');
 const { StatusCodes } = require('http-status-codes');
 
 const index = async (req, res, next) => {
+    console.log('req.user')
+    console.log(req.user.role)
     try {
         const result = await getAllOrders(req);
 

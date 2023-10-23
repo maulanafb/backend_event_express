@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require('cors')
 
 // Create Express application
 const app = express();
@@ -27,6 +28,7 @@ const v1 = "/api/v1/cms";
 const v2 = "/api/v1/";
 
 // Use middlewares
+app.use(cors())
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
