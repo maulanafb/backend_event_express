@@ -18,7 +18,7 @@ const authRouter = require('./app/api/v1/auth/router');
 const ordersRouter = require('./app/api/v1/orders/router');
 const eventsRouter = require('./app/api/v1/events/router');
 const paymentsRouter = require('./app/api/v1/payments/router');
-
+const refreshTokenRouter = require('./app/api/v1/userRefreshToken/router')
 // Define middlewares
 const notFoundMiddleware = require("./app/middlewares/not-found");
 const handleErrorMiddleware = require("./app/middlewares/handler-error");
@@ -49,6 +49,7 @@ app.use(v1, authRouter);
 app.use(v1, organizersRouter);
 app.use(v1, eventsRouter);
 app.use(v1, ordersRouter);
+app.use(v1, refreshTokenRouter);
 app.use(v1, imagesRouter);
 app.use(v1, categoriesRouter);
 
