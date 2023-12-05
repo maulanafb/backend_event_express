@@ -14,4 +14,4 @@ const userRefreshTokenSchema = new mongoose.Schema(
     { timestamps: true }
 );
 
-module.exports = mongoose.model('UserRefreshToken', userRefreshTokenSchema);
+module.exports = mongoose.model('userRefreshToken', userRefreshTokenSchema);

@@ -17,11 +17,6 @@ const participantSchema = new mongoose.Schema(
             unique: true,
             required: [true, 'Email harus diisi'],
         },
-        phone: {
-            type: Number,
-            unique: true,
-            required: [true, 'No Hp harus diisi'],
-        },
         password: {
             type: String,
             required: [true, 'Password harus diisi'],
